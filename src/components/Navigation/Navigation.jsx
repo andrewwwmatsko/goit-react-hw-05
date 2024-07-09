@@ -11,18 +11,20 @@ const createnavLinkClass = ({ isActive }) => {
 export default function Navigation() {
   return (
     <header className={css.header}>
-      <nav className={css.navigation}>
-        <div>
-          <NavLink to="/" className={createnavLinkClass}>
-            Home
-          </NavLink>
-          <NavLink to="/movies" className={createnavLinkClass}>
-            Movies
-          </NavLink>
-        </div>
+      <div className={css.container}>
+        <nav className={css.navigation}>
+          <div className={css.navBlock}>
+            <NavLink to="/" className={createnavLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/movies" className={createnavLinkClass}>
+              Movies
+            </NavLink>
+          </div>
 
-        <Logo />
-      </nav>
+          <Logo />
+        </nav>
+      </div>
     </header>
   );
 }
