@@ -1,5 +1,5 @@
 .header {
-  background-color: rgb(105, 105, 105);
+  /* background-color: rgb(105, 105, 105); */
   padding: 6px 0;
 }
 
@@ -23,17 +23,19 @@
 .link {
   color: whitesmoke;
   font-size: 22px;
+  font-weight: bold;
   font-family: Poppins, sans-serif;
   text-decoration: none;
 
   padding: 5px 10px;
   cursor: pointer;
   transition: color 250ms ease-in-out;
+  text-shadow: 4px 4px 4px #444343;
   transform: scale(0.9);
 }
 
 .isActive {
   color: rgb(154, 0, 0);
-  font-weight: bold;
-  text-shadow: 4px 4px 4px #444343;
+  /* font-weight: bold; */
+  /* text-shadow: 4px 4px 4px #444343; */
 }
