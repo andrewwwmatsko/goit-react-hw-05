@@ -1,0 +1,26 @@
+.header {
+  background-color: rgb(105, 105, 105);
+  padding: 6px 16px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: color 250ms ease-in-out;
+  transform: scale(0.9);
+}
+
+.isActive {
+  color: rgb(154, 0, 0);
+  font-weight: bold;
+  text-shadow: 4px 4px 4px #444343;
+}
