@@ -1,5 +1,6 @@
 .footer {
   background-color: rgb(35, 35, 35);
+  margin-top: auto;
 }
 .container {
   max-width: 1440px;

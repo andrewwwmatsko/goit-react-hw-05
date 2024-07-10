@@ -5,9 +5,11 @@ import NotFound from "../../pages/NotFoundPage/NotFoundPage";
 import HomePage from "../../pages/HomePage/HomePage";
 import Footer from "../Footer/Footer";
 
+import css from "./App.module.css";
+
 export default function App() {
   return (
-    <div>
+    <div className={css.main}>
       <Navigation />
 
       <Routes>

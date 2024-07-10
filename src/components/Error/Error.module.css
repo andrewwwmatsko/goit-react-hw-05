@@ -1,0 +1,28 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px 16px;
+}
+
+.image {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.text {
+  color: rgb(154, 0, 0);
+  text-align: center;
+
+  font-weight: 600;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px #444343;
+}
+
+.text:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.text:last-of-type {
+  font-size: 28px;
+}

@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { getAllMovies } from "../../moviesAPI/movies-api";
 
 import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 const MovieListLazy = lazy(() =>
   import("../../components/MovieList/MovieList")
@@ -32,6 +33,7 @@ export default function HomePage() {
           <MovieListLazy movies={movies} />
         </Suspense>
       )}
+      {error && <Error />}
     </div>
   );
 }
