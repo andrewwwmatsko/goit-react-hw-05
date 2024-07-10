@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 
 import css from "./App.module.css";
 import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
+import SimilarMoviesPage from "../../pages/SimilarMoviesPage/SimilarMoviesPage";
 
 export default function App() {
   return (
@@ -16,9 +17,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route path="/movies/:movieId/cast" />
-        <Route path="/movies/:movieId/reviews" />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+          <Route path="cast" />
+          <Route path="reviews" />
+          <Route path="similar-movies" element={<SimilarMoviesPage />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 
