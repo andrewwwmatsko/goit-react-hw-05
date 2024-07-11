@@ -1,5 +1,6 @@
 .section {
   padding: 40px 0;
+  position: relative;
 }
 
 .container {
@@ -10,16 +11,20 @@
 
 .mainPage {
   display: flex;
-  gap: 100px;
+  gap: 60px;
   margin-bottom: 40px;
 }
 
 .title {
   font-size: 48px;
   margin-bottom: 40px;
+  max-width: 590px;
 }
 
-.date {
+.subtitle {
+  font-size: 18px;
+}
+.subtitle:first-of-type {
   margin-bottom: 8px;
 }
 
@@ -42,11 +47,12 @@
 .genresDetails,
 .countryDetails {
   display: flex;
-  gap: 10px;
+  gap: 55px;
   margin-bottom: 8px;
 }
 
-.subtitle {
+.countryDetails {
+  gap: 30px;
 }
 
 .genresList,
@@ -79,13 +85,38 @@
 }
 
 .descriptionWrapper {
-  max-width: 750px;
+  max-width: 590px;
+  margin-bottom: 20px;
+
+  display: flex;
+  gap: 15px;
 }
 
 .movieSubtitle {
   margin-bottom: 8px;
+  font-size: 18px;
 }
 
-.description {
-  text-indent: 15px;
+.additionalInfo {
+  display: flex;
+  gap: 80px;
+}
+
+.navLink {
+  width: 100%;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+
+  transition: text-decoration 250ms ease-in-out;
+}
+
+.navLink:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.activeNavLink {
+  text-decoration-line: underline;
+  text-decoration-color: rgb(154, 0, 0);
+  text-decoration-thickness: 3px;
 }

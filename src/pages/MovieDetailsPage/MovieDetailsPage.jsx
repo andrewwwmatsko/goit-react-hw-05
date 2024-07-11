@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Suspense, useEffect, useState } from "react";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 
 import { getMovieById } from "../../moviesAPI/movies-api";
 import { createImageUrl } from "../../helpers/createImageUrl";
 
-import css from "./MovieDetailsPage.module.css";
-import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
+// import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
+import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+
+import css from "./MovieDetailsPage.module.css";
+import clsx from "clsx";
+
+const createNalLinkClass = ({ isActive }) => {
+  return clsx(css.navLink, isActive && css.activeNavLink);
+};
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
@@ -48,7 +55,7 @@ export default function MovieDetailsPage() {
                 >
                   Watch here
                 </a>
-                <p className={css.date}>Release date: {movie.release_date}</p>
+                <h3 className={css.subtitle}>{movie.release_date}</h3>
 
                 <div className={css.genresDetails}>
                   <h3 className={css.subtitle}>Genres:</h3>
@@ -81,13 +88,26 @@ export default function MovieDetailsPage() {
                 </div>
 
                 <div className={css.descriptionWrapper}>
-                  <h3 className={css.movieSubtitle}>Description</h3>
+                  <h3 className={css.movieSubtitle}>Description:</h3>
                   <p className={css.description}>{movie.overview}</p>
+                </div>
+
+                <div className={css.additionalInfo}>
+                  <div className={css.linksWrapper}>
+                    <NavLink to="cast" className={createNalLinkClass}>
+                      Cast
+                    </NavLink>
+                    {/* <NavLink to="reviews" className={createNalLinkClass}>
+                    Reviews
+                  </NavLink> */}
+                  </div>
+
+                  <Suspense fallback={<Loader />}>
+                    <Outlet />
+                  </Suspense>
                 </div>
               </div>
             </div>
-
-            <Outlet />
           </div>
         </section>
       )}

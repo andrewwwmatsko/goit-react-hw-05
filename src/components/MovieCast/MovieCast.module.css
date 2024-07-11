@@ -1,0 +1,21 @@
+.castList {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.actorItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.actorItem:not(:last-of-type):after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgb(154, 0, 0);
+  display: block;
+}
