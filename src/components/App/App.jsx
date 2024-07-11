@@ -18,6 +18,7 @@ const SimilarMoviesPage = lazy(() =>
 const MovieCast = lazy(() => import("../MovieCast/MovieCast"));
 
 import css from "./App.module.css";
+import MovieReviews from "../MovieReviews/MovieReviews";
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
           <Route path="/movies" />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" />
+            <Route path="reviews" element={<MovieReviews />} />
             <Route path="similar-movies" element={<SimilarMoviesPage />} />
           </Route>
 

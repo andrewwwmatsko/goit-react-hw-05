@@ -1,0 +1,14 @@
+.list {
+}
+
+.reviewItem:not(:last-of-type) {
+  margin-bottom: 12px;
+}
+.name {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.noComments {
+  font-size: 18px;
+}
