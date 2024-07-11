@@ -6,15 +6,18 @@ import { createImageUrl } from "../../helpers/createImageUrl.js";
 
 import css from "./MovieCast.module.css";
 import Error from "../Error/Error.jsx";
+import Loader from "../Loader/Loader.jsx";
 
 export default function MovieCast() {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();
 
   useEffect(() => {
     try {
+      setLoading(true);
       setError(false);
       const handleCastFetch = async () => {
         const data = await getCastInfo(movieId);
@@ -23,6 +26,8 @@ export default function MovieCast() {
       handleCastFetch();
     } catch (error) {
       setError(true);
+    } finally {
+      setLoading(false);
     }
   }, [movieId]);
 
@@ -44,6 +49,7 @@ export default function MovieCast() {
         </ul>
       )}
       {error && <Error />}
+      {loading && <Loader />}
     </div>
   );
 }

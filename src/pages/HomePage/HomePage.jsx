@@ -1,26 +1,28 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllMovies } from "../../moviesAPI/movies-api";
 
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 
-const MovieListLazy = lazy(() =>
-  import("../../components/MovieList/MovieList")
-);
+import MovieList from "../../components/MovieList/MovieList";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handleFetchMovies = async () => {
       try {
+        setLoading(true);
         setError(false);
         const data = await getAllMovies();
         setMovies(data.results);
       } catch (error) {
         setError(true);
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     handleFetchMovies();
@@ -28,11 +30,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {movies.length > 0 && (
-        <Suspense fallback={<Loader />}>
-          <MovieListLazy movies={movies} />
-        </Suspense>
-      )}
+      {movies.length > 0 && <MovieList movies={movies} />}
       {error && <Error />}
     </div>
   );

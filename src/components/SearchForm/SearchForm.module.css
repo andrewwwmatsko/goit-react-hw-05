@@ -1,0 +1,35 @@
+.form {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.search {
+  max-width: 320px;
+  padding: 8px 30px 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(220, 220, 220, 0.558);
+  color: black;
+  transition: background-color 250ms ease-in-out;
+  font-size: 18px;
+
+  transition: outline 250ms ease-in-out;
+}
+
+.search:focus {
+  outline: 1px solid rgb(68, 68, 68);
+}
+
+.search::placeholder {
+  color: rgba(0, 0, 0, 0.569);
+  font-weight: 400;
+}
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  top: 4px;
+  left: 200px;
+}

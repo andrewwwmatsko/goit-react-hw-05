@@ -5,15 +5,18 @@ import { useParams } from "react-router-dom";
 import Error from "../Error/Error";
 
 import css from "./MoviesReviews.module.css";
+import Loader from "../Loader/Loader";
 
 export default function MovieReviews() {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();
 
   useEffect(() => {
     try {
+      setLoading(true);
       setError(false);
 
       const handleCastFetch = async () => {
@@ -24,6 +27,8 @@ export default function MovieReviews() {
     } catch (error) {
       setError(true);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   }, [movieId]);
 
@@ -44,6 +49,7 @@ export default function MovieReviews() {
         <p className={css.noComments}>There are no reviews yet.</p>
       )}
       {error && <Error />}
+      {loading && <Loader />}
     </div>
   );
 }

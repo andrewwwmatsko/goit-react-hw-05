@@ -27,6 +27,7 @@ export default function MovieDetailsPage() {
   const [error, setError] = useState(false);
 
   const location = useLocation();
+  const backLinkHref = location.state ?? "/";
 
   const { movieId } = useParams();
 
