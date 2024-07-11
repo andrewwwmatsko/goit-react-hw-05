@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getCastInfo } from "../../moviesAPI/movies-api";
+import { createImageUrl } from "../../helpers/createImageUrl.js";
 
 import css from "./MovieCast.module.css";
 
@@ -13,7 +14,7 @@ export default function MovieCast() {
   useEffect(() => {
     const handleCastFetch = async () => {
       const data = await getCastInfo(movieId);
-      setCast(data.cast.slice(0, 4));
+      setCast(data.cast.slice(0, 5));
     };
     handleCastFetch();
   }, [movieId]);
@@ -25,7 +26,11 @@ export default function MovieCast() {
           {cast.map((actor) => {
             return (
               <li key={actor.id} className={css.actorItem}>
-                <p className={css.actorName}>{actor.name}</p>
+                <img
+                  src={createImageUrl(actor.profile_path, 200)}
+                  alt={`${actor.name} photo`}
+                />
+                <p>{actor.name}</p>
               </li>
             );
           })}

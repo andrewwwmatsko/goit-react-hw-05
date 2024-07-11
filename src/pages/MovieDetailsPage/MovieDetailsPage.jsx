@@ -15,6 +15,12 @@ const createNalLinkClass = ({ isActive }) => {
   return clsx(css.navLink, isActive && css.activeNavLink);
 };
 
+const timeFormat = (totalMinutes) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${hours}h ${minutes}m`;
+};
+
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(false);
@@ -42,7 +48,7 @@ export default function MovieDetailsPage() {
           <div className={css.container}>
             <div className={css.mainPage}>
               <img
-                src={createImageUrl(movie.poster_path, 500)}
+                src={createImageUrl(movie.poster_path, 400)}
                 alt={movie.title}
               />
               <div className={css.movieInfo}>
@@ -87,27 +93,42 @@ export default function MovieDetailsPage() {
                   </ul>
                 </div>
 
+                <div className={css.language}>
+                  <h3 className={css.subtitle}>Language:</h3>
+                  <p className={css.langOutput}>
+                    {movie.spoken_languages[0].english_name}
+                  </p>
+                </div>
+
+                <div className={css.duration}>
+                  <h3 className={css.subtitle}>Duration:</h3>
+                  <p> {timeFormat(movie.runtime)}</p>
+                </div>
+
+                <div className={css.vote}>
+                  <h3 className={css.subtitle}>Rate:</h3>
+                  <p className={css.duration}>{movie.vote_average}</p>
+                </div>
+
                 <div className={css.descriptionWrapper}>
                   <h3 className={css.movieSubtitle}>Description:</h3>
                   <p className={css.description}>{movie.overview}</p>
                 </div>
-
-                <div className={css.additionalInfo}>
-                  <div className={css.linksWrapper}>
-                    <NavLink to="cast" className={createNalLinkClass}>
-                      Cast
-                    </NavLink>
-                    {/* <NavLink to="reviews" className={createNalLinkClass}>
-                    Reviews
-                  </NavLink> */}
-                  </div>
-
-                  <Suspense fallback={<Loader />}>
-                    <Outlet />
-                  </Suspense>
-                </div>
               </div>
             </div>
+
+            <div className={css.additionalInfo}>
+              <NavLink to="cast" className={createNalLinkClass}>
+                Cast
+              </NavLink>
+
+              <NavLink to="reviews" className={createNalLinkClass}>
+                Reviews
+              </NavLink>
+            </div>
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
           </div>
         </section>
       )}

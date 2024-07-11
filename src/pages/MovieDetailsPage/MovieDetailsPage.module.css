@@ -6,12 +6,12 @@
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 72px;
 }
 
 .mainPage {
   display: flex;
-  gap: 60px;
+  gap: 40px;
   margin-bottom: 40px;
 }
 
@@ -84,6 +84,24 @@
   content: "&";
 }
 
+.language {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 8px;
+}
+
+.duration {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 8px;
+}
+
+.vote {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 8px;
+}
+
 .descriptionWrapper {
   max-width: 590px;
   margin-bottom: 20px;
@@ -99,16 +117,17 @@
 
 .additionalInfo {
   display: flex;
-  gap: 80px;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
 }
 
 .navLink {
-  width: 100%;
   color: black;
   font-weight: 700;
   font-size: 18px;
 
-  transition: text-decoration 250ms ease-in-out;
+  transition: text-decoration 250ms ease-in-out, color 250ms ease-in-out;
 }
 
 .navLink:not(:last-of-type) {
@@ -116,7 +135,8 @@
 }
 
 .activeNavLink {
-  text-decoration-line: underline;
-  text-decoration-color: rgb(154, 0, 0);
+  color: rgb(154, 0, 0);
+  text-decoration: underline;
   text-decoration-thickness: 3px;
+  text-decoration-color: rgb(154, 0, 0);
 }
