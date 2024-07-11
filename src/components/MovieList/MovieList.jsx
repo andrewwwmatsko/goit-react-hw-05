@@ -43,7 +43,9 @@ export default function MovieList({ movies }) {
                     height={169}
                   />
                   <p className={css.title}>{original_title}</p>
-                  <p className={css.date}>Released: {release_date}</p>
+                  <p className={css.date}>
+                    Released: {release_date ? release_date : "Unknown"}
+                  </p>
                 </div>
               </Link>
             </li>

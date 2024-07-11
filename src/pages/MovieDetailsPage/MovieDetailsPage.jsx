@@ -1,13 +1,14 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
-import { getMovieById } from "../../moviesAPI/movies-api";
+import { getMovieById, getSimilarMovies } from "../../moviesAPI/movies-api";
 import { createImageUrl } from "../../helpers/createImageUrl";
 
 // import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import BackToButton from "../../components/BackToButton/BackToButton";
+import MovieList from "../../components/MovieList/MovieList";
 
 import css from "./MovieDetailsPage.module.css";
 import clsx from "clsx";
@@ -25,6 +26,7 @@ const timeFormat = (totalMinutes) => {
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(false);
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/");
@@ -42,6 +44,19 @@ export default function MovieDetailsPage() {
     } catch (error) {
       setError(true);
       console.log(error);
+    }
+  }, [movieId]);
+
+  useEffect(() => {
+    try {
+      setError(false);
+      const handleGetSimilarMovies = async () => {
+        const data = await getSimilarMovies(movieId);
+        setSimilarMovies(data.results.slice(0, 4));
+      };
+      handleGetSimilarMovies();
+    } catch (error) {
+      setError(true);
     }
   }, [movieId]);
 
@@ -135,9 +150,17 @@ export default function MovieDetailsPage() {
                 Reviews
               </NavLink>
             </div>
+
             <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>
+
+            {similarMovies.length > 0 && (
+              <div className={css.similarMoviesList}>
+                <h4 className={css.subtitle}>You may also like</h4>
+                <MovieList movies={similarMovies} />
+              </div>
+            )}
           </div>
         </section>
       )}

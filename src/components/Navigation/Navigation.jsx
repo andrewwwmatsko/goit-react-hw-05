@@ -24,7 +24,7 @@ export default function Navigation() {
             </div>
 
             <NavLink to="/profile" className={createnavLinkClass}>
-              My profile
+              Log in
             </NavLink>
           </div>
         </nav>

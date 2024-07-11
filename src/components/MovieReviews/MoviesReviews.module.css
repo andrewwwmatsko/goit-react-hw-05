@@ -1,4 +1,5 @@
-.list {
+.container {
+  margin-bottom: 40px;
 }
 
 .reviewItem:not(:last-of-type) {
