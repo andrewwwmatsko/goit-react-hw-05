@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
 import { getMovieById } from "../../moviesAPI/movies-api";
 import { createImageUrl } from "../../helpers/createImageUrl";
@@ -7,6 +7,7 @@ import { createImageUrl } from "../../helpers/createImageUrl";
 // import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+import BackToButton from "../../components/BackToButton/BackToButton";
 
 import css from "./MovieDetailsPage.module.css";
 import clsx from "clsx";
@@ -24,6 +25,8 @@ const timeFormat = (totalMinutes) => {
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
 
   const { movieId } = useParams();
 
@@ -46,6 +49,7 @@ export default function MovieDetailsPage() {
       {movie && (
         <section className={css.section}>
           <div className={css.container}>
+            <BackToButton to={location.state}>Back</BackToButton>
             <div className={css.mainPage}>
               <img
                 src={createImageUrl(movie.poster_path, 400)}

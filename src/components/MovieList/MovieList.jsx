@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import css from "./MovieList.module.css";
 
 import { createImageUrl } from "../../helpers/createImageUrl";
 
 export default function MovieList({ movies }) {
+  const location = useLocation();
+
   return (
     <main>
       <section className={css.section}>
@@ -14,7 +16,11 @@ export default function MovieList({ movies }) {
               ({ id, original_title, backdrop_path, title, release_date }) => {
                 return (
                   <li key={id}>
-                    <Link to={`/movies/${id}`} className={css.movieLink}>
+                    <Link
+                      to={`/movies/${id}`}
+                      state={location}
+                      className={css.movieLink}
+                    >
                       <div>
                         <img
                           src={createImageUrl(backdrop_path, 300)}
