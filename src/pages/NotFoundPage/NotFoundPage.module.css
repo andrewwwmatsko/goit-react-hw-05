@@ -1,0 +1,13 @@
+.section {
+  padding: 100px 0;
+}
+
+.container {
+  max-width: 1584px;
+  margin: 0 auto;
+  min-height: 60vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}

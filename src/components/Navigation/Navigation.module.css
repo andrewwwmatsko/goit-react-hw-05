@@ -1,6 +1,6 @@
 .header {
-  /* background-color: rgb(105, 105, 105); */
   padding: 6px 0;
+  background-color: rgb(154, 0, 0);
 }
 
 .container {
@@ -17,25 +17,31 @@
 
 .navBlock {
   display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.pageNav {
+  display: flex;
+  align-items: center;
   gap: 5px;
 }
 
 .link {
   color: whitesmoke;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 500;
   font-family: Poppins, sans-serif;
   text-decoration: none;
 
   padding: 5px 10px;
   cursor: pointer;
-  transition: color 250ms ease-in-out;
-  text-shadow: 4px 4px 4px #444343;
+  transition: text-shadow 250ms ease-in-out;
   transform: scale(0.9);
 }
-
 .isActive {
-  color: rgb(154, 0, 0);
-  /* font-weight: bold; */
-  /* text-shadow: 4px 4px 4px #444343; */
+  color: #ffffff;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }

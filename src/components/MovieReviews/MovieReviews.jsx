@@ -34,7 +34,7 @@ export default function MovieReviews() {
 
   return (
     <div className={css.container}>
-      {reviews.length > 0 ? (
+      {reviews.length > 0 && (
         <ul className={css.list}>
           {reviews.map((review) => {
             return (
@@ -45,7 +45,8 @@ export default function MovieReviews() {
             );
           })}
         </ul>
-      ) : (
+      )}
+      {reviews.length < 1 && !loading && (
         <p className={css.noComments}>There are no reviews yet.</p>
       )}
       {error && <Error />}

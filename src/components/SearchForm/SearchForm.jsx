@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { RiSearchLine } from "react-icons/ri";
 
 import css from "./SearchForm.module.css";
+import { useRef } from "react";
 
 const notify = () =>
   toast.error("Please enter your query.", {
@@ -19,6 +20,8 @@ const notify = () =>
   });
 
 export default function SearchForm({ onSubmit, searchValue }) {
+  const inputRef = useRef();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,11 +33,14 @@ export default function SearchForm({ onSubmit, searchValue }) {
     }
 
     onSubmit(searchValue);
+
+    inputRef.current.style.focus = false;
   };
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <input
+        ref={inputRef}
         type="text"
         name="search"
         placeholder="Search your movie"
@@ -44,7 +50,7 @@ export default function SearchForm({ onSubmit, searchValue }) {
         className={css.search}
       />
       <button type="submit" className={css.button}>
-        <RiSearchLine size={24} color="white" />
+        <RiSearchLine size={24} color="rgba(0, 0, 0, 0.729)" />
       </button>
     </form>
   );

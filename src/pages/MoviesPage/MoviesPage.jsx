@@ -27,12 +27,13 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!movieName) return;
+
     try {
       setError(false);
       setLoading(true);
+
       const handleSearchFetch = async () => {
         const movies = await getMovieByName(movieName);
-
         setMoviesList(movies.results);
       };
       handleSearchFetch();

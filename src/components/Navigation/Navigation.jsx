@@ -14,15 +14,19 @@ export default function Navigation() {
       <div className={css.container}>
         <nav className={css.navigation}>
           <div className={css.navBlock}>
-            <NavLink to="/" className={createnavLinkClass}>
-              Home
-            </NavLink>
-            <NavLink to="/movies" className={createnavLinkClass}>
-              Movies
+            <div className={css.pageNav}>
+              <NavLink to="/" className={createnavLinkClass}>
+                <Logo />
+              </NavLink>
+              <NavLink to="/movies" className={createnavLinkClass}>
+                Movies
+              </NavLink>
+            </div>
+
+            <NavLink to="/profile" className={createnavLinkClass}>
+              My profile
             </NavLink>
           </div>
-
-          <Logo />
         </nav>
       </div>
     </header>

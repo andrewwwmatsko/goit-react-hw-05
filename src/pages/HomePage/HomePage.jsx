@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllMovies } from "../../moviesAPI/movies-api";
 
-// import Loader from "../../components/Loader/Loader";
+import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 
-import MovieList from "../../components/MovieList/MovieList";
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -29,9 +30,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
-      {movies.length > 0 && <MovieList movies={movies} />}
-      {error && <Error />}
-    </div>
+    <main>
+      <section className={css.section}>
+        <div className={css.container}>
+          {movies.length > 0 && <MovieList movies={movies} />}
+          {error && <Error />}
+          {loading && <Loader />}
+        </div>
+      </section>
+    </main>
   );
 }

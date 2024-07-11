@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
 import { getMovieById } from "../../moviesAPI/movies-api";
@@ -27,7 +27,7 @@ export default function MovieDetailsPage() {
   const [error, setError] = useState(false);
 
   const location = useLocation();
-  const backLinkHref = location.state ?? "/";
+  const backLinkRef = useRef(location.state ?? "/");
 
   const { movieId } = useParams();
 
@@ -50,11 +50,13 @@ export default function MovieDetailsPage() {
       {movie && (
         <section className={css.section}>
           <div className={css.container}>
-            <BackToButton to={location.state}>Back</BackToButton>
+            <BackToButton to={backLinkRef.current}>Back</BackToButton>
             <div className={css.mainPage}>
               <img
                 src={createImageUrl(movie.poster_path, 400)}
                 alt={movie.title}
+                width={400}
+                height={600}
               />
               <div className={css.movieInfo}>
                 <h2 className={css.title}>{movie.title}</h2>
@@ -98,12 +100,14 @@ export default function MovieDetailsPage() {
                   </ul>
                 </div>
 
-                <div className={css.language}>
-                  <h3 className={css.subtitle}>Language:</h3>
-                  <p className={css.langOutput}>
-                    {movie.spoken_languages[0].english_name}
-                  </p>
-                </div>
+                {movie.spoken_languages.length > 0 && (
+                  <div className={css.language}>
+                    <h3 className={css.subtitle}>Language:</h3>
+                    <p className={css.langOutput}>
+                      {movie.spoken_languages[0].english_name}
+                    </p>
+                  </div>
+                )}
 
                 <div className={css.duration}>
                   <h3 className={css.subtitle}>Duration:</h3>

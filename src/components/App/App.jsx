@@ -7,6 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import Loader from "../Loader/Loader";
 import MovieReviews from "../MovieReviews/MovieReviews";
+import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
@@ -37,7 +38,7 @@ export default function App() {
             <Route path="reviews" element={<MovieReviews />} />
             <Route path="similar-movies" element={<SimilarMoviesPage />} />
           </Route>
-
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
