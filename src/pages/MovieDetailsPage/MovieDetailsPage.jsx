@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
 import { getMovieById, getSimilarMovies } from "../../moviesAPI/movies-api";
-import { createImageUrl } from "../../helpers/createImageUrl";
+import { createPosterUrl } from "../../helpers/createImageUrl";
 
 // import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 import Loader from "../../components/Loader/Loader";
@@ -68,9 +68,9 @@ export default function MovieDetailsPage() {
             <BackToButton to={backLinkRef.current}>Back</BackToButton>
             <div className={css.mainPage}>
               <img
-                src={createImageUrl(
-                  movie.backdrop_path,
+                src={createPosterUrl(
                   movie.poster_path,
+                  movie.backdrop_path,
                   400
                 )}
                 alt={movie.title}
