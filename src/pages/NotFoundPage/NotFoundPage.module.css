@@ -1,3 +1,15 @@
+@keyframes blink {
+  0% {
+    filter: url("../../images/404.png");
+  }
+  50% {
+    filter: grayscale(40%);
+  }
+  100% {
+    filter: url("../../images/404.png");
+  }
+}
+
 .section {
   padding: 100px 0;
 }
@@ -5,9 +17,29 @@
 .container {
   max-width: 1584px;
   margin: 0 auto;
-  min-height: 60vh;
 
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img {
+  animation: blink 2s infinite;
+  margin-bottom: 40px;
+}
+
+.text {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.linkText {
+  font-size: 18px;
+  text-align: center;
+}
+
+.link {
+  color: black;
+  text-decoration: underline;
 }
