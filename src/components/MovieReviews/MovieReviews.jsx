@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { getReviews } from "../../moviesAPI/movies-api";
 import { useParams } from "react-router-dom";
 
+import { getReviews } from "../../moviesAPI/movies-api";
+
 import Error from "../Error/Error";
+import LoadMoreBtn from "../LoadMoreBtnMoreBtn/LoadMoreBtn";
 
 import css from "./MoviesReviews.module.css";
 import Loader from "../Loader/Loader";
@@ -49,9 +51,11 @@ export default function MovieReviews() {
           })}
         </ul>
       )}
+
       {reviews.length < 1 && !loading && (
         <p className={css.noComments}>There are no reviews yet.</p>
       )}
+
       {error && <Error />}
       {loading && <Loader />}
     </div>

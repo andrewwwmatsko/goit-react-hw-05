@@ -70,7 +70,7 @@ export async function getReviews(movieId) {
   return response.data;
 }
 
-export async function getMovieByName(movieName) {
+export async function getMovieByName(movieName, page) {
   const url = `https://api.themoviedb.org/3/search/movie`;
   const options = {
     headers: {
@@ -79,6 +79,7 @@ export async function getMovieByName(movieName) {
     },
     params: {
       query: movieName,
+      page,
     },
   };
 

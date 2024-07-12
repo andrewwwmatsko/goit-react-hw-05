@@ -10,7 +10,7 @@ import LoadMoreBtn from "../../components/LoadMoreBtnMoreBtn/LoadMoreBtn";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
 
   const [error, setError] = useState(false);
