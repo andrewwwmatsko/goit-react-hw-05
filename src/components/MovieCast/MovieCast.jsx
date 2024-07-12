@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getCastInfo } from "../../moviesAPI/movies-api";
-import { createImageUrl } from "../../helpers/createImageUrl.js";
+import { createActorUrl } from "../../helpers/createImageUrl.js";
 
 import css from "./MovieCast.module.css";
 import Error from "../Error/Error.jsx";
@@ -40,7 +40,7 @@ export default function MovieCast() {
             return (
               <li key={actor.id} className={css.actorItem}>
                 <img
-                  src={createImageUrl(actor.profile_path, 200)}
+                  src={createActorUrl(actor.profile_path, 200)}
                   alt={`${actor.name} photo`}
                 />
                 <p>{actor.name}</p>

@@ -21,3 +21,7 @@ export const createPosterUrl = (posterPath, backdropPath, imageWidth) => {
   }
   return dummyImgUrl;
 };
+
+export const createActorUrl = (path, width) => {
+  return `https://image.tmdb.org/t/p/w${width}/${path}`;
+};
