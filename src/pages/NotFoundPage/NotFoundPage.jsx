@@ -5,7 +5,7 @@ import css from "./NotFoundPage.module.css";
 import { useEffect, useState } from "react";
 
 export default function NotFoundPage() {
-  const [calldown, setCalldown] = useState(3);
+  const [calldown, setCalldown] = useState(10);
   const navigate = useNavigate();
 
   useEffect(() => {
