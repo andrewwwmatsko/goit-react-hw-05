@@ -68,7 +68,11 @@ export default function MovieDetailsPage() {
             <BackToButton to={backLinkRef.current}>Back</BackToButton>
             <div className={css.mainPage}>
               <img
-                src={createImageUrl(movie.poster_path, 400)}
+                src={createImageUrl(
+                  movie.backdrop_path,
+                  movie.poster_path,
+                  400
+                )}
                 alt={movie.title}
                 width={400}
                 height={600}

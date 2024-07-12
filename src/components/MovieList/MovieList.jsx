@@ -18,15 +18,6 @@ export default function MovieList({ movies }) {
           release_date,
           poster_path,
         }) => {
-          const checkerUrl = () => {
-            if (backdrop_path === null) {
-              return createImageUrl(poster_path, 300);
-            } else {
-              return createImageUrl(backdrop_path, 300);
-            }
-          };
-          checkerUrl();
-
           return (
             <li key={id}>
               <Link
@@ -36,7 +27,7 @@ export default function MovieList({ movies }) {
               >
                 <div>
                   <img
-                    src={checkerUrl()}
+                    src={createImageUrl(backdrop_path, poster_path, 300)}
                     alt={`Poster of ${title}`}
                     className={css.poster}
                     width={300}
