@@ -17,19 +17,22 @@ export default function MovieCast() {
 
   useEffect(() => {
     if (!movieId) return;
-    try {
-      setLoading(true);
-      setError(false);
-      const handleCastFetch = async () => {
+
+    const handleCastFetch = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
         const data = await getCastInfo(movieId);
         setCast(data.cast.slice(0, 5));
-      };
-      handleCastFetch();
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleCastFetch();
   }, [movieId]);
 
   return (
@@ -49,6 +52,7 @@ export default function MovieCast() {
           })}
         </ul>
       )}
+      {cast.length < 1 && !loading && <p>No data</p>}
       {error && <Error />}
       {loading && <Loader />}
     </div>

@@ -28,21 +28,22 @@ export default function MoviesPage() {
   useEffect(() => {
     if (!movieName) return;
 
-    try {
-      setError(false);
-      setLoading(true);
+    const handleSearchFetch = async () => {
+      try {
+        setError(false);
+        setLoading(true);
 
-      const handleSearchFetch = async () => {
         const movies = await getMovieByName(movieName);
         setMoviesList(movies.results);
-      };
-      handleSearchFetch();
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [setError, setSearchParams, movieName]);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleSearchFetch();
+  }, [movieName]);
 
   return (
     <section className={css.section}>

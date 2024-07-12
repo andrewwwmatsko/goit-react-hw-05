@@ -48,16 +48,17 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   useEffect(() => {
-    try {
-      setError(false);
-      const handleGetSimilarMovies = async () => {
+    const handleGetSimilarMovies = async () => {
+      try {
+        setError(false);
         const data = await getSimilarMovies(movieId);
         setSimilarMovies(data.results.slice(0, 4));
-      };
-      handleGetSimilarMovies();
-    } catch (error) {
-      setError(true);
-    }
+      } catch (error) {
+        setError(true);
+      }
+    };
+
+    handleGetSimilarMovies();
   }, [movieId]);
 
   return (

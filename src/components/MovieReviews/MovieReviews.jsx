@@ -16,21 +16,23 @@ export default function MovieReviews() {
 
   useEffect(() => {
     if (!movieId) return;
-    try {
-      setLoading(true);
-      setError(false);
 
-      const handleCastFetch = async () => {
+    const handleCastFetch = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
         const data = await getReviews(movieId);
         setReviews(data.results);
-      };
-      handleCastFetch();
-    } catch (error) {
-      setError(true);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+      } catch (error) {
+        setError(true);
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleCastFetch();
   }, [movieId]);
 
   return (
