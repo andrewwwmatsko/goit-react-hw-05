@@ -45,6 +45,7 @@ export default function MovieCast() {
                 <img
                   src={createActorUrl(actor.profile_path, 200)}
                   alt={`${actor.name} photo`}
+                  className={css.actorPhoto}
                 />
                 <p>{actor.name}</p>
               </li>
