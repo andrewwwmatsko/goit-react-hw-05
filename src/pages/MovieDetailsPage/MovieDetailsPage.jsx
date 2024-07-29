@@ -1,17 +1,16 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 
-import { getMovieById, getSimilarMovies } from "../../moviesAPI/movies-api";
+import { getMovieById } from "../../moviesAPI/movies-api";
 import { createPosterUrl } from "../../helpers/createImageUrl";
 
-// import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import BackToButton from "../../components/BackToButton/BackToButton";
-import MovieList from "../../components/MovieList/MovieList";
 
 import css from "./MovieDetailsPage.module.css";
 import clsx from "clsx";
+import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 
 const createNalLinkClass = ({ isActive }) => {
   return clsx(css.navLink, isActive && css.activeNavLink);
@@ -26,7 +25,6 @@ const timeFormat = (totalMinutes) => {
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(false);
-  const [similarMovies, setSimilarMovies] = useState([]);
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/");
@@ -45,20 +43,6 @@ export default function MovieDetailsPage() {
       setError(true);
       console.log(error);
     }
-  }, [movieId]);
-
-  useEffect(() => {
-    const handleGetSimilarMovies = async () => {
-      try {
-        setError(false);
-        const data = await getSimilarMovies(movieId);
-        setSimilarMovies(data.results.slice(0, 4));
-      } catch (error) {
-        setError(true);
-      }
-    };
-
-    handleGetSimilarMovies();
   }, [movieId]);
 
   return (
@@ -161,12 +145,7 @@ export default function MovieDetailsPage() {
               <Outlet />
             </Suspense>
 
-            {similarMovies.length > 0 && (
-              <div className={css.similarMoviesList}>
-                <h4 className={css.subtitle}>You may also like</h4>
-                <MovieList movies={similarMovies} />
-              </div>
-            )}
+            <SimilarMovies movieId={movieId} />
           </div>
         </section>
       )}

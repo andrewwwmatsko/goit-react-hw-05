@@ -46,7 +46,11 @@ export default function HomePage() {
     <main>
       <section className={css.section}>
         <div className={css.container}>
-          {movies.length > 0 && <MovieList movies={movies} />}
+          {movies.length > 0 && (
+            <div className={css.listWrapper}>
+              <MovieList movies={movies} />
+            </div>
+          )}
           {error && <Error />}
           {loading && <Loader />}
           {page < totalPages && !loading && (
