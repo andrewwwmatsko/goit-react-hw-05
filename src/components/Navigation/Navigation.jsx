@@ -20,16 +20,20 @@ export default function Navigation() {
               <NavLink to="/" className={createnavLinkClass}>
                 <Logo />
               </NavLink>
-              <NavLink to="/movies" className={createnavLinkClass}>
-                Movies
-              </NavLink>
+              <div className={css.biggerScreenlink}>
+                <NavLink to="/movies" className={createnavLinkClass}>
+                  Movies
+                </NavLink>
+              </div>
 
-              <IoMenu className={css.menuIcon} size={22} />
+              <IoMenu className={css.menuIcon} size={32} color="whitesmoke" />
             </div>
 
-            <NavLink to="/profile" className={createnavLinkClass}>
-              Log in
-            </NavLink>
+            <div className={css.biggerScreenlink}>
+              <NavLink to="/profile" className={createnavLinkClass}>
+                Log in
+              </NavLink>
+            </div>
           </div>
         </nav>
       </div>

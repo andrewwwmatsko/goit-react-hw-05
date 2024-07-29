@@ -14,6 +14,15 @@
   justify-content: space-between;
 }
 
+@media screen and (max-width: 320px) {
+  .container {
+    max-width: 320px;
+    padding: 8px;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
 .rights {
   color: whitesmoke;
   font-size: 16px;
