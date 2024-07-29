@@ -1,19 +1,19 @@
-Find Your Movie
+Find Your Movie 🎞️
 
-This website allows you to search any movie you want!
+This website allows you to search any movie you want 🙌
 
 You can find the following information:
 
-1) Popular movies today
-2) Releaase date
-3) Movie rate
-4) Lanugage
-5) Genres
-6) Cast
-7) Comments
+1) Popular movies today 🎥
+2) Release date 📅
+4) Movie rate 📈
+5) Lanugage 👄
+6) Genres  😊
+7) Cast 🕴️
+8) Comments 🗣️
 
 Tech stack:
-- React
-- JavaScript
-- CSS
+- React ⚛
+- JavaScript 🧠
+- CSS 🎨
 
