@@ -9,7 +9,7 @@ export default function LoadMoreBtn({ onLoadMore }) {
       }}
       className={css.button}
     >
-      LoadMore
+      Load More
     </button>
   );
 }

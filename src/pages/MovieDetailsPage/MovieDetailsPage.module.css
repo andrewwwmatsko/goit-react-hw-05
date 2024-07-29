@@ -15,6 +15,10 @@
   margin-bottom: 40px;
 }
 
+.image {
+  border-radius: 8px;
+}
+
 .title {
   font-size: 48px;
   margin-bottom: 40px;

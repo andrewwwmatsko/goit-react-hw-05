@@ -8,9 +8,17 @@
   margin-bottom: 60px;
 }
 
+.listItem {
+  transition: transform 250ms cubic-bezier(0.68, 0.16, 1, 0.64);
+}
+
+.listItem:hover {
+  transform: scale(1.05);
+}
+
 .poster {
   margin-bottom: 4px;
-  border-radius: 4px;
+  border-radius: 8px;
   object-fit: cover;
 }
 

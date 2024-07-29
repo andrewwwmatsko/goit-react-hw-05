@@ -19,7 +19,7 @@ export default function MovieList({ movies }) {
           poster_path,
         }) => {
           return (
-            <li key={id}>
+            <li key={id} className={css.listItem}>
               <Link
                 to={`/movies/${id}`}
                 state={location}
@@ -27,11 +27,11 @@ export default function MovieList({ movies }) {
               >
                 <div>
                   <img
-                    src={createImageUrl(backdrop_path, poster_path, 300)}
+                    src={createImageUrl(poster_path, backdrop_path, 300)}
                     alt={`Poster of ${title}`}
                     className={css.poster}
                     width={300}
-                    height={169}
+                    height={400}
                   />
                   <p className={css.title}>{original_title}</p>
                   <p className={css.date}>

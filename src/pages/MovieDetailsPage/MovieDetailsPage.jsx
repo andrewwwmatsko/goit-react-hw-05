@@ -77,6 +77,7 @@ export default function MovieDetailsPage() {
                 alt={movie.title}
                 width={400}
                 height={600}
+                className={css.image}
               />
               <div className={css.movieInfo}>
                 <h2 className={css.title}>{movie.title}</h2>
