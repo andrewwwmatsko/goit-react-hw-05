@@ -38,6 +38,42 @@
   }
 }
 
+@media screen and (min-width: 360px) {
+  .container {
+    max-width: 360px;
+  }
+
+  .img {
+    max-width: 350px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .img {
+    max-width: 700px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+
+  .img {
+    max-width: 900px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
 .img {
   animation: blink 2s infinite;
   margin-bottom: 40px;
