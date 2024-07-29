@@ -11,10 +11,11 @@
   padding: 0 16px;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media screen and (max-width: 320px) {
+  .container {
+    max-width: 320px;
+    padding: 0 8px;
+  }
 }
 
 .navBlock {

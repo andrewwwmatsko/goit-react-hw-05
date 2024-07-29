@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+import { IoMenu } from "react-icons/io5";
+
 import css from "./Navigation.module.css";
 import clsx from "clsx";
 import Logo from "../Logo/Logo";
@@ -21,6 +23,8 @@ export default function Navigation() {
               <NavLink to="/movies" className={createnavLinkClass}>
                 Movies
               </NavLink>
+
+              <IoMenu className={css.menuIcon} size={22} />
             </div>
 
             <NavLink to="/profile" className={createnavLinkClass}>

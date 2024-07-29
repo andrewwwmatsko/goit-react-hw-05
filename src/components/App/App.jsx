@@ -16,9 +16,6 @@ const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const MovieDetailsPage = lazy(() =>
   import("../../pages/MovieDetailsPage/MovieDetailsPage")
 );
-const SimilarMoviesPage = lazy(() =>
-  import("../../pages/SimilarMoviesPage/SimilarMoviesPage")
-);
 const MovieCast = lazy(() => import("../MovieCast/MovieCast"));
 const MoviesPage = lazy(() => import("../../pages/MoviesPage/MoviesPage"));
 
@@ -36,7 +33,6 @@ export default function App() {
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
-            <Route path="similar-movies" element={<SimilarMoviesPage />} />
           </Route>
           <Route path="/profile" element={<LogInPage />} />
           <Route path="*" element={<NotFoundPage />} />
