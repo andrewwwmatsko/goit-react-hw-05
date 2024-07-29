@@ -89,11 +89,7 @@ export default function MovieDetailsPage() {
                 </div>
 
                 <div className={css.countryDetails}>
-                  <h3 className={css.subtitle}>
-                    {movie.origin_country.length > 1
-                      ? "Countries:"
-                      : "Country:"}
-                  </h3>
+                  <h3 className={css.subtitle}>Country</h3>
                   <ul className={css.countryList}>
                     {movie.origin_country.map((country) => {
                       return (
