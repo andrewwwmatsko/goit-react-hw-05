@@ -50,8 +50,8 @@ export const MoviesSlice = createSlice({
       .addCase(fetchMovieByName.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.totalPages = payload.total_pages;
         state.foundMovies = [...state.foundMovies, ...payload.results];
+        state.totalPages = payload.total_pages;
       })
       .addCase(fetchMovieByName.rejected, (state, { payload }) => {
         state.isLoading = false;

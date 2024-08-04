@@ -18,6 +18,7 @@ import {
 import {
   handlePage,
   resetFoundMovies,
+  resetMovies,
   resetPage,
   resetTotalPages,
 } from "../../redux/movies/slice";
@@ -53,6 +54,7 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!movieName) return;
+    dispatch(resetMovies());
 
     dispatch(fetchMovieByName({ query: movieName, page }));
   }, [movieName, page, dispatch]);

@@ -3,12 +3,17 @@ import imgUrl from "../../images/404.png";
 
 import css from "./NotFoundPage.module.css";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { resetMovies } from "../../redux/movies/slice";
 
 export default function NotFoundPage() {
   const [calldown, setCalldown] = useState(10);
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch(resetMovies());
     const intervalId = setInterval(() => {
       setCalldown((prev) => prev - 1);
 
@@ -22,7 +27,7 @@ export default function NotFoundPage() {
     return () => {
       clearInterval(intervalId);
     };
-  }, [calldown, navigate]);
+  }, [dispatch, calldown, navigate]);
 
   return (
     <main>
