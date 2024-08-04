@@ -27,7 +27,9 @@ export default function SimilarMovies({ movieId }) {
       {similarMovies.length > 0 && (
         <div className={css.similarMoviesList}>
           <h4 className={css.subtitle}>You may also like</h4>
-          <MovieList movies={similarMovies} />
+          <div>
+            <MovieList movies={similarMovies} />
+          </div>
         </div>
       )}
       {error && <Error />}

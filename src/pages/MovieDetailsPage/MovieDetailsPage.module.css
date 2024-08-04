@@ -1,35 +1,40 @@
 .section {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 .container {
-  max-width: 1584px;
+  max-width: 360px;
   margin: 0 auto;
-  padding: 0 72px;
-  position: relative;
-}
-
-.mainPage {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
+  padding: 0 8px;
 }
 
 .image {
   border-radius: 8px;
+  width: 300px;
+  height: 400px;
+  margin-bottom: 30px;
 }
 
-.title {
-  font-size: 48px;
-  margin-bottom: 40px;
+.bigScreenTitle {
+  font-size: 38px;
+  margin-bottom: 20px;
   max-width: 590px;
+}
+.title {
+  font-size: 38px;
+  margin-bottom: 20px;
+  max-width: 590px;
+  display: none;
 }
 
 .subtitle {
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: bolder;
+  margin-bottom: 10px;
 }
-.subtitle:first-of-type {
-  margin-bottom: 8px;
+
+.releaseDate {
+  margin-bottom: 20px;
 }
 
 .homepageLink {
@@ -48,10 +53,14 @@
   transition: box-shadow 250ms ease-in-out;
 }
 
+.movieInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .genresDetails,
 .countryDetails {
-  display: flex;
-  gap: 55px;
   margin-bottom: 8px;
 }
 
@@ -63,6 +72,8 @@
 .countryList {
   display: flex;
   gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .genreItem,
@@ -89,34 +100,25 @@
 }
 
 .language {
-  display: flex;
-  gap: 30px;
   margin-bottom: 8px;
 }
 
 .duration {
-  display: flex;
-  gap: 40px;
   margin-bottom: 8px;
 }
 
 .vote {
-  display: flex;
-  gap: 80px;
   margin-bottom: 8px;
 }
 
 .descriptionWrapper {
   max-width: 590px;
   margin-bottom: 20px;
-
-  display: flex;
-  gap: 15px;
 }
 
 .movieSubtitle {
   margin-bottom: 8px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .additionalInfo {
@@ -143,4 +145,87 @@
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-decoration-color: rgb(154, 0, 0);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 16px;
+  }
+  .mainPage {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .movieInfo {
+    order: 3;
+    flex-grow: 2;
+    flex-wrap: wrap;
+  }
+  .image {
+    width: 400px;
+    height: 600px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding: 0 32px;
+  }
+  .bigScreenTitle {
+    display: none;
+  }
+  .title {
+    display: block;
+  }
+
+  .countryDetails,
+  .genresDetails,
+  .language,
+  .duration,
+  .vote {
+    align-items: baseline;
+  }
+
+  .countryDetails {
+    display: flex;
+    gap: 59px;
+  }
+
+  .genresDetails {
+    display: flex;
+    gap: 65px;
+    align-items: baseline;
+  }
+
+  .language {
+    display: flex;
+    gap: 32px;
+  }
+
+  .duration {
+    display: flex;
+    gap: 46px;
+  }
+
+  .vote {
+    display: flex;
+    gap: 93px;
+  }
+
+  .descriptionWrapper {
+    display: flex;
+    gap: 15px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+  .mainPage {
+    gap: 60px;
+  }
 }

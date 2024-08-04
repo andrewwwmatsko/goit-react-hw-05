@@ -4,3 +4,16 @@
 .subtitle {
   margin-bottom: 30px;
 }
+
+@media screen and (max-width: 1439px) {
+  .similarMoviesList > div {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .similarMoviesList > div {
+    max-width: 1440px;
+  }
+}

@@ -51,6 +51,7 @@ export default function MovieDetailsPage() {
           <div className={css.container}>
             <BackToButton to={backLinkRef.current}>Back</BackToButton>
 
+            <h2 className={css.bigScreenTitle}>{movie.title}</h2>
             <div className={css.mainPage}>
               <img
                 src={createPosterUrl(
@@ -59,70 +60,73 @@ export default function MovieDetailsPage() {
                   400
                 )}
                 alt={movie.title}
-                width={400}
-                height={600}
                 className={css.image}
               />
-              <div className={css.movieInfo}>
+
+              <div>
                 <h2 className={css.title}>{movie.title}</h2>
-                <a
-                  href={movie.homepage}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={css.homepageLink}
-                >
-                  Watch here
-                </a>
-                <h3 className={css.subtitle}>{movie.release_date}</h3>
 
-                <div className={css.genresDetails}>
-                  <h3 className={css.subtitle}>Genres:</h3>
-                  <ul className={css.genresList}>
-                    {movie.genres.map((genre) => {
-                      return (
-                        <li key={genre.id} className={css.genreItem}>
-                          <span className={css.itemText}>{genre.name}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                <div className={css.movieInfo}>
+                  <a
+                    href={movie.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css.homepageLink}
+                  >
+                    Watch here
+                  </a>
 
-                <div className={css.countryDetails}>
-                  <h3 className={css.subtitle}>Country</h3>
-                  <ul className={css.countryList}>
-                    {movie.origin_country.map((country) => {
-                      return (
-                        <li key={country} className={css.countryItem}>
-                          <span className={css.itemText}>{country}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                  <h3 className={css.releaseDate}>{movie.release_date}</h3>
 
-                {movie.spoken_languages.length > 0 && (
-                  <div className={css.language}>
-                    <h3 className={css.subtitle}>Language:</h3>
-                    <p className={css.langOutput}>
-                      {movie.spoken_languages[0].english_name}
-                    </p>
+                  <div className={css.genresDetails}>
+                    <h3 className={css.subtitle}>Genres:</h3>
+                    <ul className={css.genresList}>
+                      {movie.genres.map((genre) => {
+                        return (
+                          <li key={genre.id} className={css.genreItem}>
+                            <span className={css.itemText}>{genre.name}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
-                )}
 
-                <div className={css.duration}>
-                  <h3 className={css.subtitle}>Duration:</h3>
-                  <p> {timeFormat(movie.runtime)}</p>
-                </div>
+                  <div className={css.countryDetails}>
+                    <h3 className={css.subtitle}>Country</h3>
+                    <ul className={css.countryList}>
+                      {movie.origin_country.map((country) => {
+                        return (
+                          <li key={country} className={css.countryItem}>
+                            <span className={css.itemText}>{country}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
 
-                <div className={css.vote}>
-                  <h3 className={css.subtitle}>Rate:</h3>
-                  <p className={css.duration}>{movie.vote_average}</p>
-                </div>
+                  {movie.spoken_languages.length > 0 && (
+                    <div className={css.language}>
+                      <h3 className={css.subtitle}>Language:</h3>
+                      <p className={css.langOutput}>
+                        {movie.spoken_languages[0].english_name}
+                      </p>
+                    </div>
+                  )}
 
-                <div className={css.descriptionWrapper}>
-                  <h3 className={css.movieSubtitle}>Description:</h3>
-                  <p className={css.description}>{movie.overview}</p>
+                  <div className={css.duration}>
+                    <h3 className={css.subtitle}>Duration:</h3>
+                    <p> {timeFormat(movie.runtime)}</p>
+                  </div>
+
+                  <div className={css.vote}>
+                    <h3 className={css.subtitle}>Rate:</h3>
+                    <p className={css.duration}>{movie.vote_average}</p>
+                  </div>
+
+                  <div className={css.descriptionWrapper}>
+                    <h3 className={css.movieSubtitle}>Description:</h3>
+                    <p className={css.description}>{movie.overview}</p>
+                  </div>
                 </div>
               </div>
             </div>
