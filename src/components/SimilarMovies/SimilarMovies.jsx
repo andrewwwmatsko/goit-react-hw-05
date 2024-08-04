@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import MovieList from "../../components/MovieList/MovieList";
 import Error from "../Error/Error";
 
-import { fetchSimilarMovies } from "../../redux/movies/ops";
-import { selectError, selectSimilarMovies } from "../../redux/movies/selectors";
+import { fetchSimilarMovies } from "../../redux/currentMovie/ops";
+import {
+  selectError,
+  selectSimilarMovies,
+} from "../../redux/currentMovie/selectors";
 
 import css from "./SimilarMovies.module.css";
 

@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 
-import { fetchMovieReviews } from "../../redux/movies/ops";
+import { fetchMovieReviews } from "../../redux/currentMovie/ops";
 import {
   selectError,
   selectIsLoading,
-  selectMovieReviews,
-} from "../../redux/movies/selectors";
+} from "../../redux/currentMovie/selectors";
+
+import { selectMovieReviews } from "../../redux/currentMovie/selectors";
 
 import css from "./MoviesReviews.module.css";
 

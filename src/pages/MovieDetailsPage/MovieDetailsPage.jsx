@@ -10,8 +10,12 @@ import Error from "../../components/Error/Error";
 import BackToButton from "../../components/BackToButton/BackToButton";
 import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 
-import { selectCurrentMovie, selectError } from "../../redux/movies/selectors";
-import { fetchMovieById } from "../../redux/movies/ops";
+import {
+  selectCurrentMovie,
+  selectError,
+} from "../../redux/currentMovie/selectors";
+
+import { fetchMovieById } from "../../redux/currentMovie/ops";
 
 import css from "./MovieDetailsPage.module.css";
 

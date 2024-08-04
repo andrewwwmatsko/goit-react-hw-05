@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchCastInfo,
-  fetchMovieById,
-  fetchMovieByName,
-  fetchMovieReviews,
-  fetchMovies,
-  fetchSimilarMovies,
-} from "./ops";
+import { fetchMovieByName, fetchMovies } from "./ops";
 
 export const MoviesSlice = createSlice({
   name: "movies",
@@ -15,10 +8,6 @@ export const MoviesSlice = createSlice({
     foundMovies: [],
     page: 1,
     totalPages: 0,
-    currentMovie: null,
-    cast: [],
-    reviews: [],
-    similarMovies: [],
     isLoading: false,
     error: null,
   },
@@ -51,58 +40,6 @@ export const MoviesSlice = createSlice({
         state.totalPages = payload.total_pages;
       })
       .addCase(fetchMovies.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(fetchMovieById.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchMovieById.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.currentMovie = payload;
-      })
-      .addCase(fetchMovieById.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(fetchSimilarMovies.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchSimilarMovies.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.similarMovies = payload.results.slice(0, 4);
-      })
-      .addCase(fetchSimilarMovies.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(fetchCastInfo.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchCastInfo.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.cast = payload.cast.slice(0, 5);
-      })
-      .addCase(fetchCastInfo.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(fetchMovieReviews.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchMovieReviews.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.reviews = payload.results;
-      })
-      .addCase(fetchMovieReviews.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })

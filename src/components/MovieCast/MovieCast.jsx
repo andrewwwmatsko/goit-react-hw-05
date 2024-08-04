@@ -7,12 +7,12 @@ import Error from "../Error/Error.jsx";
 import Loader from "../Loader/Loader.jsx";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCastInfo } from "../../redux/movies/ops.js";
+import { fetchCastInfo } from "../../redux/currentMovie/ops.js";
 import {
   selectCast,
   selectError,
   selectIsLoading,
-} from "../../redux/movies/selectors.js";
+} from "../../redux/currentMovie/selectors.js";
 
 import css from "./MovieCast.module.css";
 
