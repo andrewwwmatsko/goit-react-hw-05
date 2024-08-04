@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMovieById, fetchMovies, fetchSimilarMovies } from "./ops";
+import {
+  fetchCastInfo,
+  fetchMovieById,
+  fetchMovies,
+  fetchSimilarMovies,
+} from "./ops";
 
 export const MoviesSlice = createSlice({
   name: "movies",
@@ -8,6 +13,7 @@ export const MoviesSlice = createSlice({
     page: 1,
     totalPages: 0,
     currentMovie: null,
+    cast: [],
     similarMovies: [],
     isLoading: false,
     error: null,
@@ -48,12 +54,23 @@ export const MoviesSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchSimilarMovies.fulfilled, (state, { payload }) => {
-        console.log(".addCase ~ payload:", payload);
         state.isLoading = false;
         state.error = null;
         state.similarMovies = payload.results.slice(0, 4);
       })
       .addCase(fetchSimilarMovies.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchCastInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCastInfo.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.cast = payload.cast.slice(0, 5);
+      })
+      .addCase(fetchCastInfo.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       }),
