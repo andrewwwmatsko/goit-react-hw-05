@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMovies } from "./ops";
+import { fetchMovieById, fetchMovies } from "./ops";
 
 export const MoviesSlice = createSlice({
   name: "movies",
@@ -28,6 +28,18 @@ export const MoviesSlice = createSlice({
         state.totalPages = payload.total_pages;
       })
       .addCase(fetchMovies.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchMovieById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchMovieById.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentMovie = payload;
+      })
+      .addCase(fetchMovieById.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       }),

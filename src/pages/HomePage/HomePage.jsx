@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getAllMovies } from "../../moviesAPI/movies-api";
+import { useEffect } from "react";
 
 import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";

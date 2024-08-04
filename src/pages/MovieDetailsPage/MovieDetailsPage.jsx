@@ -1,16 +1,18 @@
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import clsx from "clsx";
 
-import { getMovieById } from "../../moviesAPI/movies-api";
 import { createPosterUrl } from "../../helpers/createImageUrl";
 
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import BackToButton from "../../components/BackToButton/BackToButton";
 
-import css from "./MovieDetailsPage.module.css";
-import clsx from "clsx";
 import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
+import { selectCurrentMovie, selectError } from "../../redux/movies/selectors";
+import css from "./MovieDetailsPage.module.css";
+import { fetchMovieById } from "../../redux/movies/ops";
 
 const createNalLinkClass = ({ isActive }) => {
   return clsx(css.navLink, isActive && css.activeNavLink);
@@ -23,27 +25,19 @@ const timeFormat = (totalMinutes) => {
 };
 
 export default function MovieDetailsPage() {
-  const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(false);
+  const movie = useSelector(selectCurrentMovie);
+  const error = useSelector(selectError);
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/");
 
   const { movieId } = useParams();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    try {
-      setError(false);
-      const handleFetch = async () => {
-        const movie = await getMovieById(movieId);
-        setMovie(movie);
-      };
-      handleFetch();
-    } catch (error) {
-      setError(true);
-      console.log(error);
-    }
-  }, [movieId]);
+    dispatch(fetchMovieById(movieId));
+  }, [movieId, dispatch]);
 
   return (
     <main>
@@ -51,6 +45,7 @@ export default function MovieDetailsPage() {
         <section className={css.section}>
           <div className={css.container}>
             <BackToButton to={backLinkRef.current}>Back</BackToButton>
+
             <div className={css.mainPage}>
               <img
                 src={createPosterUrl(
