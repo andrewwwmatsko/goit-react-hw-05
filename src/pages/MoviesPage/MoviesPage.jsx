@@ -10,13 +10,14 @@ import LoadMoreBtn from "../../components/LoadMoreBtnMoreBtn/LoadMoreBtn";
 
 import {
   selectError,
+  selectFoundMovies,
   selectIsLoading,
-  selectMovies,
   selectPage,
   selectTotalPages,
 } from "../../redux/movies/selectors";
 import {
   handlePage,
+  resetFoundMovies,
   resetMovies,
   resetPage,
   resetTotalPages,
@@ -26,7 +27,7 @@ import { fetchMovieByName } from "../../redux/movies/ops";
 import css from "./MoviesPage.module.css";
 
 export default function MoviesPage() {
-  const moviesList = useSelector(selectMovies);
+  const moviesList = useSelector(selectFoundMovies);
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
 
@@ -41,23 +42,26 @@ export default function MoviesPage() {
 
   const handleSearchMovie = (searchMovie) => {
     dispatch(resetPage());
+    dispatch(resetMovies());
 
     searchParams.set("query", searchMovie);
     setSearchParams(searchParams);
   };
 
   const handleLoadMore = () => {
-    dispatch(handlePage);
+    dispatch(handlePage());
   };
 
   useEffect(() => {
     if (!movieName) return;
 
-    dispatch(resetMovies());
-    dispatch(resetTotalPages());
-
     dispatch(fetchMovieByName({ query: movieName, page }));
   }, [movieName, page, dispatch]);
+
+  useEffect(() => {
+    dispatch(resetFoundMovies());
+    dispatch(resetTotalPages());
+  }, [dispatch]);
 
   return (
     <section className={css.section}>
@@ -65,13 +69,19 @@ export default function MoviesPage() {
         <SearchForm onSubmit={handleSearchMovie} searchValue={movieName} />
 
         {moviesList.length > 0 && (
-          <div className={css.moviesWrapper}>
+          <div className={css.wrapper}>
             <MovieList movies={moviesList} />
           </div>
         )}
+        {error && (
+          <div className={css.wrapper}>
+            <Error />
+          </div>
+        )}
+        {page < totalPages && !loading && (
+          <LoadMoreBtn onLoadMore={handleLoadMore} />
+        )}
         {loading && <Loader />}
-        {error && <Error />}
-        {page < totalPages && <LoadMoreBtn onLoadMore={handleLoadMore} />}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 export const selectMovies = (state) => state.movies.items;
 export const selectCurrentMovie = (state) => state.movies.currentMovie;
 export const selectSimilarMovies = (state) => state.movies.similarMovies;
+export const selectFoundMovies = (state) => state.movies.foundMovies;
 
 export const selectCast = (state) => state.movies.cast;
 

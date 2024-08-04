@@ -12,6 +12,7 @@ export const MoviesSlice = createSlice({
   name: "movies",
   initialState: {
     items: [],
+    foundMovies: [],
     page: 1,
     totalPages: 0,
     currentMovie: null,
@@ -33,6 +34,9 @@ export const MoviesSlice = createSlice({
     },
     resetMovies(state) {
       state.items = [];
+    },
+    resetFoundMovies(state) {
+      state.foundMovies = [];
     },
   },
   extraReducers: (builder) =>
@@ -110,7 +114,7 @@ export const MoviesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.totalPages = payload.total_pages;
-        state.items = [...state.items, ...payload.results];
+        state.foundMovies = [...state.foundMovies, ...payload.results];
       })
       .addCase(fetchMovieByName.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -120,5 +124,10 @@ export const MoviesSlice = createSlice({
 
 export default MoviesSlice.reducer;
 
-export const { handlePage, resetPage, resetMovies, resetTotalPages } =
-  MoviesSlice.actions;
+export const {
+  handlePage,
+  resetPage,
+  resetMovies,
+  resetTotalPages,
+  resetFoundMovies,
+} = MoviesSlice.actions;
