@@ -4,6 +4,8 @@ export const selectSimilarMovies = (state) => state.movies.similarMovies;
 
 export const selectCast = (state) => state.movies.cast;
 
+export const selectMovieReviews = (state) => state.movies.reviews;
+
 export const selectPage = (state) => state.movies.page;
 export const selectTotalPages = (state) => state.movies.totalPages;
 

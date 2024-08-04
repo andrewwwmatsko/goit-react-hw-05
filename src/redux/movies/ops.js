@@ -58,3 +58,16 @@ export const fetchCastInfo = createAsyncThunk(
     }
   }
 );
+
+export const fetchMovieReviews = createAsyncThunk(
+  "movies/movieReviews",
+  async (movieId, thunkAPI) => {
+    const url = `/movie/${movieId}/reviews`;
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
