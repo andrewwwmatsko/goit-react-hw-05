@@ -1,67 +1,74 @@
-import { useEffect, useState } from "react";
-import { getMovieByName } from "../../moviesAPI/movies-api";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MovieList from "../../components/MovieList/MovieList";
 import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
-
-import css from "./MoviesPage.module.css";
-import { useSearchParams } from "react-router-dom";
 import LoadMoreBtn from "../../components/LoadMoreBtnMoreBtn/LoadMoreBtn";
 
-export default function MoviesPage() {
-  const [moviesList, setMoviesList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+import {
+  selectError,
+  selectIsLoading,
+  selectMovies,
+  selectPage,
+  selectTotalPages,
+} from "../../redux/movies/selectors";
+import {
+  handlePage,
+  resetMovies,
+  resetPage,
+  resetTotalPages,
+} from "../../redux/movies/slice";
+import { fetchMovieByName } from "../../redux/movies/ops";
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+import css from "./MoviesPage.module.css";
+
+export default function MoviesPage() {
+  const moviesList = useSelector(selectMovies);
+  const page = useSelector(selectPage);
+  const totalPages = useSelector(selectTotalPages);
+
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const dispatch = useDispatch();
+
   const movieName = searchParams.get("query") ?? "";
 
   const handleSearchMovie = (searchMovie) => {
-    setPage(1);
-    setMoviesList([]);
+    dispatch(resetPage());
 
     searchParams.set("query", searchMovie);
     setSearchParams(searchParams);
   };
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    dispatch(handlePage);
   };
 
   useEffect(() => {
     if (!movieName) return;
 
-    const handleSearchFetch = async () => {
-      try {
-        setError(false);
-        setLoading(true);
+    dispatch(resetMovies());
+    dispatch(resetTotalPages());
 
-        const movies = await getMovieByName(movieName, page);
-        setMoviesList((prevMovies) => {
-          return [...prevMovies, ...movies.results];
-        });
-        setTotalPages(movies.total_pages);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    handleSearchFetch();
-  }, [movieName, page]);
+    dispatch(fetchMovieByName({ query: movieName, page }));
+  }, [movieName, page, dispatch]);
 
   return (
     <section className={css.section}>
       <div className={css.container}>
         <SearchForm onSubmit={handleSearchMovie} searchValue={movieName} />
 
-        {moviesList.length > 0 && <MovieList movies={moviesList} />}
+        {moviesList.length > 0 && (
+          <div className={css.moviesWrapper}>
+            <MovieList movies={moviesList} />
+          </div>
+        )}
         {loading && <Loader />}
         {error && <Error />}
         {page < totalPages && <LoadMoreBtn onLoadMore={handleLoadMore} />}

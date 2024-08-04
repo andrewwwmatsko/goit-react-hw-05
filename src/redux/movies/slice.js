@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchCastInfo,
   fetchMovieById,
+  fetchMovieByName,
   fetchMovieReviews,
   fetchMovies,
   fetchSimilarMovies,
@@ -24,6 +25,15 @@ export const MoviesSlice = createSlice({
     handlePage(state) {
       state.page += 1;
     },
+    resetPage(state) {
+      state.page = 1;
+    },
+    resetTotalPages(state) {
+      state.totalPages = 0;
+    },
+    resetMovies(state) {
+      state.items = [];
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -40,6 +50,7 @@ export const MoviesSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(fetchMovieById.pending, (state) => {
         state.isLoading = true;
       })
@@ -52,6 +63,7 @@ export const MoviesSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(fetchSimilarMovies.pending, (state) => {
         state.isLoading = true;
       })
@@ -64,6 +76,7 @@ export const MoviesSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(fetchCastInfo.pending, (state) => {
         state.isLoading = true;
       })
@@ -76,6 +89,7 @@ export const MoviesSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(fetchMovieReviews.pending, (state) => {
         state.isLoading = true;
       })
@@ -87,9 +101,24 @@ export const MoviesSlice = createSlice({
       .addCase(fetchMovieReviews.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+
+      .addCase(fetchMovieByName.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchMovieByName.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.totalPages = payload.total_pages;
+        state.items = [...state.items, ...payload.results];
+      })
+      .addCase(fetchMovieByName.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       }),
 });
 
 export default MoviesSlice.reducer;
 
-export const { handlePage } = MoviesSlice.actions;
+export const { handlePage, resetPage, resetMovies, resetTotalPages } =
+  MoviesSlice.actions;
