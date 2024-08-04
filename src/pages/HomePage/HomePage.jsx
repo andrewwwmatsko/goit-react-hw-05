@@ -5,42 +5,39 @@ import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 
-import css from "./HomePage.module.css";
 import LoadMoreBtn from "../../components/LoadMoreBtnMoreBtn/LoadMoreBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../../redux/movies/ops";
+
+import {
+  selectError,
+  selectIsLoading,
+  selectMovies,
+  selectPage,
+  selectTotalPages,
+} from "../../redux/movies/selectors";
+
+import { handlePage } from "../../redux/movies/slice";
+
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
-  const [movies, setMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
+  const movies = useSelector(selectMovies);
+  const page = useSelector(selectPage);
+  const totalPages = useSelector(selectTotalPages);
 
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    dispatch(handlePage());
   };
 
   useEffect(() => {
-    const handleFetchMovies = async () => {
-      try {
-        setLoading(true);
-        setError(false);
-
-        const data = await getAllMovies(page);
-        setMovies((prevMovies) => {
-          return [...prevMovies, ...data.results];
-        });
-        setTotalPages(data.total_pages);
-      } catch (error) {
-        setError(true);
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    handleFetchMovies();
-  }, [page]);
+    dispatch(fetchMovies(page));
+  }, [page, dispatch]);
 
   return (
     <main>
