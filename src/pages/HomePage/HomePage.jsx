@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
@@ -16,7 +16,7 @@ import {
   selectTotalPages,
 } from "../../redux/movies/selectors";
 
-import { handlePage, resetPage } from "../../redux/movies/slice";
+import { handlePage, resetMovies, resetPage } from "../../redux/movies/slice";
 
 import css from "./HomePage.module.css";
 
@@ -35,6 +35,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    dispatch(resetMovies());
     dispatch(fetchMovies(page));
     dispatch(resetPage());
   }, [page, dispatch]);

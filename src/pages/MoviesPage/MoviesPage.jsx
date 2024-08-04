@@ -18,7 +18,6 @@ import {
 import {
   handlePage,
   resetFoundMovies,
-  resetMovies,
   resetPage,
   resetTotalPages,
 } from "../../redux/movies/slice";
@@ -42,7 +41,7 @@ export default function MoviesPage() {
 
   const handleSearchMovie = (searchMovie) => {
     dispatch(resetPage());
-    dispatch(resetMovies());
+    dispatch(resetFoundMovies());
 
     searchParams.set("query", searchMovie);
     setSearchParams(searchParams);
