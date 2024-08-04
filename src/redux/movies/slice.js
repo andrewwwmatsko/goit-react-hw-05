@@ -13,9 +13,9 @@ export const MoviesSlice = createSlice({
   },
   reducers: {
     handlePage(state) {
-      state.page += 1;
+      state.page = state.page + 1;
     },
-    resetPage(state) {
+    resetMoviesPage(state) {
       state.page = 1;
     },
     resetTotalPages(state) {
@@ -63,7 +63,7 @@ export default MoviesSlice.reducer;
 
 export const {
   handlePage,
-  resetPage,
+  resetMoviesPage,
   resetMovies,
   resetTotalPages,
   resetFoundMovies,

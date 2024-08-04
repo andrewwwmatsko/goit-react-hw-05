@@ -19,7 +19,7 @@ import {
   handlePage,
   resetFoundMovies,
   resetMovies,
-  resetPage,
+  resetMoviesPage,
   resetTotalPages,
 } from "../../redux/movies/slice";
 import { fetchMovieByName } from "../../redux/movies/ops";
@@ -41,7 +41,7 @@ export default function MoviesPage() {
   const movieName = searchParams.get("query") ?? "";
 
   const handleSearchMovie = (searchMovie) => {
-    dispatch(resetPage());
+    dispatch(resetMoviesPage());
     dispatch(resetFoundMovies());
 
     searchParams.set("query", searchMovie);
@@ -54,13 +54,14 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!movieName) return;
-    dispatch(resetMovies());
 
     dispatch(fetchMovieByName({ query: movieName, page }));
   }, [movieName, page, dispatch]);
 
   useEffect(() => {
     dispatch(resetFoundMovies());
+    dispatch(resetMovies());
+    dispatch(resetMoviesPage());
     dispatch(resetTotalPages());
   }, [dispatch]);
 
