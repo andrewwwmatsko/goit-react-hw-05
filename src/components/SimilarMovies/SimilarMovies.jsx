@@ -1,29 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import MovieList from "../../components/MovieList/MovieList";
 import Error from "../Error/Error";
 
-import { getSimilarMovies } from "../../moviesAPI/movies-api";
+import { fetchSimilarMovies } from "../../redux/movies/ops";
+import { selectError, selectSimilarMovies } from "../../redux/movies/selectors";
 
 import css from "./SimilarMovies.module.css";
 
 export default function SimilarMovies({ movieId }) {
-  const [similarMovies, setSimilarMovies] = useState([]);
-  const [error, setError] = useState(false);
+  const similarMovies = useSelector(selectSimilarMovies);
+  const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleGetSimilarMovies = async () => {
-      try {
-        setError(false);
-        const data = await getSimilarMovies(movieId);
-        setSimilarMovies(data.results.slice(0, 4));
-      } catch (error) {
-        setError(true);
-      }
-    };
-
-    handleGetSimilarMovies();
-  }, [movieId]);
+    dispatch(fetchSimilarMovies(movieId));
+  }, [movieId, dispatch]);
 
   return (
     <>

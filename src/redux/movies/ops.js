@@ -32,3 +32,16 @@ export const fetchMovieById = createAsyncThunk(
     }
   }
 );
+
+export const fetchSimilarMovies = createAsyncThunk(
+  "movies/getSimilarMovies",
+  async (movieId, thunkAPI) => {
+    const url = `/movie/${movieId}/similar`;
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
