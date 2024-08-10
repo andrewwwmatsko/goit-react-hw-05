@@ -1,6 +1,7 @@
 .header {
   padding: 6px 0;
-  background-color: rgb(154, 0, 0);
+  /* background-color: rgb(154, 0, 0); */
+  background-color: #0e4749;
   border-end-start-radius: 20px;
   border-end-end-radius: 20px;
 }
@@ -23,17 +24,18 @@
     max-width: 360px;
     padding: 0 8px;
   }
-  .navBlock {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
     padding: 0 16px;
+  }
+
+  .navBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -75,10 +77,18 @@
     #ff2d95 0px 0px 75px;
 }
 
+.modalBtn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .menuIcon {
   cursor: pointer;
   flex-shrink: 0;
 }
+
 .biggerScreenlink {
   display: none;
 }

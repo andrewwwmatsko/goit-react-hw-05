@@ -34,7 +34,7 @@ export default function App() {
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
           </Route>
-          <Route path="/profile" element={<LogInPage />} />
+          <Route path="/login" element={<LogInPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

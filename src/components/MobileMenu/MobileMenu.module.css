@@ -1,0 +1,104 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobMenu {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background: #0e4749;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+.mob {
+  display: flex;
+  flex-direction: column;
+  padding-top: 240px;
+}
+
+.menuCloseBtn {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 15px;
+  right: 5px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media screen and (min-width: 425px) {
+  .menuCloseBtn {
+    right: 35px;
+  }
+}
+
+.mobMenuNavigation {
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.mobMenuItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #fbfbfb;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.mobMenuItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.mobMenuItem:active {
+  background-color: #fbfbfb;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+}
+
+.buttonShop {
+  border: 1px solid rgba(251, 251, 251, 0.2);
+  border-radius: 30px;
+  padding: 16px 41px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #fbfbfb;
+  cursor: pointer;
+  background: #7a3145;
+  margin: 0 auto;
+}
+
+.mobMenuLink {
+  color: #d6d5c9;
+}
+
+.mobMenuLink:active {
+  color: #7a3145;
+}
