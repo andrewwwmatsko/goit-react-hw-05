@@ -1,4 +1,5 @@
 import { IoCloseSharp } from "react-icons/io5";
+import { IoMdCloseCircle } from "react-icons/io";
 
 import { motion } from "framer-motion";
 
@@ -7,10 +8,10 @@ import { Link } from "react-router-dom";
 
 const variants = {
   initial: {
-    clipPath: "circle(30px at calc(100% - 40px) 20px)",
+    clipPath: "circle(30px at calc(100% - 40px) 10px)",
   },
   open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 20px)`,
+    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 10px)`,
     transition: {
       type: "spring",
       stiffness: 20,
@@ -18,7 +19,7 @@ const variants = {
     },
   }),
   closed: {
-    clipPath: "circle(30px at calc(100% - 40px) 20px)",
+    clipPath: "circle(30px at calc(100% - 40px) 0px)",
     transition: {
       type: "spring",
       stiffness: 400,
@@ -39,7 +40,7 @@ export default function MobileMenu({ onModalClose, isOpen }) {
         <div className={css.mobMenu}>
           <div className={css.mob}>
             <button className={css.menuCloseBtn} onClick={onModalClose}>
-              <IoCloseSharp size={24} />
+              <IoMdCloseCircle size={24} />
             </button>
             <nav className={css.mobMenuNavigation}>
               <ul className="mob-menu-list">
