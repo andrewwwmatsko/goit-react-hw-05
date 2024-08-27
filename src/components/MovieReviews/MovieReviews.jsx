@@ -1,34 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 
-import { fetchMovieReviews } from "../../redux/currentMovie/ops";
-import {
-  selectError,
-  selectIsLoading,
-} from "../../redux/currentMovie/selectors";
-
-import { selectMovieReviews } from "../../redux/currentMovie/selectors";
-
 import css from "./MoviesReviews.module.css";
+import { getReviews } from "../../moviesAPI/movies-api.js";
 
 export default function MovieReviews() {
-  const reviews = useSelector(selectMovieReviews);
-  const error = useSelector(selectError);
-  const loading = useSelector(selectIsLoading);
+  const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!movieId) return;
 
-    dispatch(fetchMovieReviews(movieId));
-  }, [movieId, dispatch]);
+    const handleCastFetch = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        const data = await getReviews(movieId);
+        setReviews(data.results);
+      } catch (error) {
+        setError(true);
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleCastFetch();
+  }, [movieId]);
 
   return (
     <div className={css.container}>

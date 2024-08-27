@@ -1,10 +1,10 @@
-import { IoCloseSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 import { motion } from "framer-motion";
 
-import css from "./MobileMenu.module.css";
 import { Link } from "react-router-dom";
+
+import css from "./MobileMenu.module.css";
 
 const variants = {
   initial: {

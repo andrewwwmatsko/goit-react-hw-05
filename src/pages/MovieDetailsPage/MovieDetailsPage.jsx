@@ -1,21 +1,15 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import clsx from "clsx";
 
-import { createPosterUrl } from "../../helpers/createImageUrl";
+import clsx from "clsx";
 
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import BackToButton from "../../components/BackToButton/BackToButton";
 import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
 
-import {
-  selectCurrentMovie,
-  selectError,
-} from "../../redux/currentMovie/selectors";
-
-import { fetchMovieById } from "../../redux/currentMovie/ops";
+import { createPosterUrl } from "../../helpers/createImageUrl";
+import { getMovieById } from "../../moviesAPI/movies-api.js";
 
 import css from "./MovieDetailsPage.module.css";
 
@@ -30,19 +24,27 @@ const timeFormat = (totalMinutes) => {
 };
 
 export default function MovieDetailsPage() {
-  const movie = useSelector(selectCurrentMovie);
-  const error = useSelector(selectError);
+  const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(false);
 
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/");
 
   const { movieId } = useParams();
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchMovieById(movieId));
-  }, [movieId, dispatch]);
+    try {
+      setError(false);
+      const handleFetch = async () => {
+        const movie = await getMovieById(movieId);
+        setMovie(movie);
+      };
+      handleFetch();
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
+  }, [movieId]);
 
   return (
     <main>

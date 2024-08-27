@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { createActorUrl } from "../../helpers/createImageUrl.js";
@@ -6,30 +6,36 @@ import { createActorUrl } from "../../helpers/createImageUrl.js";
 import Error from "../Error/Error.jsx";
 import Loader from "../Loader/Loader.jsx";
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCastInfo } from "../../redux/currentMovie/ops.js";
-import {
-  selectCast,
-  selectError,
-  selectIsLoading,
-} from "../../redux/currentMovie/selectors.js";
-
 import css from "./MovieCast.module.css";
 
+import { getCastInfo } from "../../moviesAPI/movies-api.js";
+
 export default function MovieCast() {
-  const cast = useSelector(selectCast);
-  const error = useSelector(selectError);
-  const loading = useSelector(selectIsLoading);
+  const [cast, setCast] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!movieId) return;
 
-    dispatch(fetchCastInfo(movieId));
-  }, [movieId, dispatch]);
+    const handleCastFetch = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        const data = await getCastInfo(movieId);
+        setCast(data.cast.slice(0, 5));
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleCastFetch();
+  }, [movieId]);
 
   return (
     <div className={css.castSection}>
